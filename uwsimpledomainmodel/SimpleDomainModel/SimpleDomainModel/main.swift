@@ -186,7 +186,10 @@ public class Family {
         for person in members {
             // Add only if the person has a job
             if person.job != nil {
-                income += 12 * (person.job!.calculateIncome(2000))
+                switch person.job!.income {
+                case .Salary ( _): income += person.job!.calculateIncome(2000)
+                case .Hourly ( _): income += (person.job!.calculateIncome(2000))
+                }
             }
         }
         return income
